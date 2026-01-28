@@ -1,1 +1,1057 @@
 Prioritize
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#B4D4FF">
+    <meta name="description" content="Aplikasi daftar belanja dengan prioritas untuk mahasiswa">
+    <title>Prioritize - Daftar Belanja Pintar</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Manifest untuk PWA -->
+    <link rel="manifest" href="#" id="manifest-placeholder">
+    
+    <style>
+        :root {
+            --pastel-blue: #B4D4FF;
+            --pastel-green: #C8E6C9;
+            --pastel-pink: #FFD6E8;
+            --soft-white: #FAFAFA;
+            --dark-bg: #1a1a2e;
+            --dark-card: #16213e;
+            --dark-text: #e0e0e0;
+            --priority-high: #FFB3BA;
+            --priority-medium: #FFFFBA;
+            --priority-low: #BAFFC9;
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-pink) 100%);
+            min-height: 100vh;
+            padding-bottom: 80px;
+            transition: background 0.3s ease;
+        }
+        
+        body.dark-mode {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-card) 100%);
+            color: var(--dark-text);
+        }
+        
+        .container {
+            max-width: 600px;
+            padding-top: 20px;
+        }
+        
+        .app-header {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .dark-mode .app-header {
+            background: var(--dark-card);
+            color: var(--dark-text);
+        }
+        
+        .app-header h1 {
+            font-weight: 700;
+            color: var(--pastel-blue);
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        .dark-mode .app-header h1 {
+            color: var(--pastel-blue);
+        }
+        
+        .app-header p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .dark-mode .app-header p {
+            color: #aaa;
+        }
+        
+        .budget-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .dark-mode .budget-card {
+            background: var(--dark-card);
+        }
+        
+        .budget-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .budget-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: var(--soft-white);
+            border-radius: 10px;
+        }
+        
+        .dark-mode .budget-info {
+            background: var(--dark-bg);
+        }
+        
+        .budget-info.over-budget {
+            background: #ffe6e6;
+            border: 2px solid #ff4444;
+        }
+        
+        .dark-mode .budget-info.over-budget {
+            background: #4a1f1f;
+            border: 2px solid #ff6666;
+        }
+        
+        .add-item-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .dark-mode .add-item-card {
+            background: var(--dark-card);
+        }
+        
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            padding: 10px 15px;
+        }
+        
+        .dark-mode .form-control,
+        .dark-mode .form-select {
+            background: var(--dark-bg);
+            border-color: #444;
+            color: var(--dark-text);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--pastel-blue);
+            box-shadow: 0 0 0 0.2rem rgba(180, 212, 255, 0.25);
+        }
+        
+        .btn-add {
+            background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: 600;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+        
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .priority-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .priority-high {
+            background: var(--priority-high);
+            color: #8B0000;
+        }
+        
+        .priority-medium {
+            background: var(--priority-medium);
+            color: #8B6914;
+        }
+        
+        .priority-low {
+            background: var(--priority-low);
+            color: #006400;
+        }
+        
+        .shopping-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .shopping-item {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        
+        .dark-mode .shopping-item {
+            background: var(--dark-card);
+        }
+        
+        .shopping-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .item-info {
+            flex: 1;
+        }
+        
+        .item-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .item-price {
+            color: var(--pastel-blue);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .item-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .btn-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .btn-edit {
+            background: var(--pastel-green);
+        }
+        
+        .btn-delete {
+            background: var(--pastel-pink);
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+        
+        .dark-mode .bottom-nav {
+            background: var(--dark-card);
+        }
+        
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+            border-radius: 10px;
+            margin: 0 5px;
+        }
+        
+        .nav-item:hover {
+            background: var(--soft-white);
+        }
+        
+        .dark-mode .nav-item:hover {
+            background: var(--dark-bg);
+        }
+        
+        .nav-item.active {
+            background: var(--pastel-blue);
+            color: white;
+        }
+        
+        .nav-icon {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+        
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        .history-item {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .dark-mode .history-item {
+            background: var(--dark-card);
+        }
+        
+        .history-date {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 10px;
+        }
+        
+        .settings-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .dark-mode .settings-card {
+            background: var(--dark-card);
+        }
+        
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .dark-mode .setting-item {
+            border-bottom-color: #444;
+        }
+        
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 30px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--pastel-blue);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.show {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .dark-mode .modal-content {
+            background: var(--dark-card);
+        }
+        
+        .alert-custom {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .dark-mode .alert-custom {
+            background: #4a3f1f;
+            border-color: #ffc107;
+        }
+        
+        .alert-custom.show {
+            display: block;
+        }
+        
+        @media (max-width: 576px) {
+            .app-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page: Home -->
+        <div id="page-home" class="page active">
+            <div class="app-header">
+                <h1>🎯 Prioritize</h1>
+                <p>Belanja Pintar, Hemat Cerdas!</p>
+            </div>
+            
+            <!-- Budget Alert -->
+            <div id="budgetAlert" class="alert-custom">
+                <strong>⚠️ Peringatan!</strong> Total belanja Anda melebihi anggaran!
+            </div>
+            
+            <!-- Budget Summary -->
+            <div class="budget-card">
+                <h5 style="margin-bottom: 15px;">💰 Anggaran Belanja</h5>
+                <div class="budget-input-group">
+                    <input type="number" id="budgetInput" class="form-control" placeholder="Masukkan anggaran (Rp)" min="0">
+                    <button class="btn btn-add" onclick="setBudget()" style="width: auto;">Set</button>
+                </div>
+                <div id="budgetInfo" class="budget-info">
+                    <div>
+                        <small>Total Belanja</small>
+                        <h4 id="totalSpent" style="margin: 0; color: var(--pastel-blue);">Rp 0</h4>
+                    </div>
+                    <div style="text-align: right;">
+                        <small>Anggaran</small>
+                        <h4 id="budgetAmount" style="margin: 0;">Rp 0</h4>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Shopping List -->
+            <div class="budget-card">
+                <h5 style="margin-bottom: 15px;">📝 Daftar Belanja</h5>
+                <div id="shoppingList" class="shopping-list">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🛒</div>
+                        <p>Belum ada item belanja.<br>Tambahkan sekarang!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page: Add Item -->
+        <div id="page-add" class="page">
+            <div class="app-header">
+                <h1>➕ Tambah Belanja</h1>
+                <p>Atur prioritas belanjamu</p>
+            </div>
+            
+            <div class="add-item-card">
+                <form id="addItemForm" onsubmit="addItem(event)">
+                    <div class="mb-3">
+                        <label class="form-label">📦 Nama Item</label>
+                        <input type="text" id="itemName" class="form-control" placeholder="Contoh: Mie Instan" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">💵 Harga (Rp)</label>
+                        <input type="number" id="itemPrice" class="form-control" placeholder="Contoh: 15000" min="0" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">🎯 Prioritas</label>
+                        <select id="itemPriority" class="form-select" required>
+                            <option value="">Pilih Prioritas</option>
+                            <option value="high">⭐ Tinggi (Wajib)</option>
+                            <option value="medium">✨ Sedang (Perlu)</option>
+                            <option value="low">💫 Rendah (Keinginan)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">📝 Catatan (Opsional)</label>
+                        <textarea id="itemNote" class="form-control" rows="3" placeholder="Tambahkan catatan..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-add">
+                        ✅ Tambahkan Item
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Page: History -->
+        <div id="page-history" class="page">
+            <div class="app-header">
+                <h1>📊 Riwayat</h1>
+                <p>Catatan belanja sebelumnya</p>
+            </div>
+            
+            <div id="historyList">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📋</div>
+                    <p>Belum ada riwayat belanja</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page: Settings -->
+        <div id="page-settings" class="page">
+            <div class="app-header">
+                <h1>⚙️ Pengaturan</h1>
+                <p>Sesuaikan aplikasi Anda</p>
+            </div>
+            
+            <div class="settings-card">
+                <div class="setting-item">
+                    <div>
+                        <strong>🌙 Mode Gelap</strong>
+                        <p style="margin: 0; font-size: 0.8rem; color: #999;">Aktifkan tema gelap</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-item">
+                    <div>
+                        <strong>🗑️ Hapus Semua Data</strong>
+                        <p style="margin: 0; font-size: 0.8rem; color: #999;">Reset aplikasi</p>
+                    </div>
+                    <button class="btn btn-danger btn-sm" onclick="clearAllData()">Hapus</button>
+                </div>
+                
+                <div class="setting-item">
+                    <div>
+                        <strong>💾 Simpan ke Riwayat</strong>
+                        <p style="margin: 0; font-size: 0.8rem; color: #999;">Pindahkan belanja saat ini</p>
+                    </div>
+                    <button class="btn btn-success btn-sm" onclick="saveToHistory()">Simpan</button>
+                </div>
+            </div>
+            
+            <div class="settings-card">
+                <h5 style="margin-bottom: 15px;">ℹ️ Tentang Aplikasi</h5>
+                <p><strong>Prioritize</strong> v1.0</p>
+                <p style="font-size: 0.9rem; color: #666;">Aplikasi daftar belanja dengan sistem prioritas untuk membantu mahasiswa mengatur keuangan.</p>
+                <p style="font-size: 0.8rem; color: #999; margin-top: 15px;">💡 Tips: Gunakan prioritas "Tinggi" untuk kebutuhan wajib, "Sedang" untuk kebutuhan penting, dan "Rendah" untuk keinginan.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="switchPage('home')">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </div>
+        <div class="nav-item" onclick="switchPage('add')">
+            <span class="nav-icon">➕</span>
+            <span class="nav-label">Tambah</span>
+        </div>
+        <div class="nav-item" onclick="switchPage('history')">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Riwayat</span>
+        </div>
+        <div class="nav-item" onclick="switchPage('settings')">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label">Pengaturan</span>
+        </div>
+    </div>
+    
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h4 style="margin-bottom: 20px;">✏️ Edit Item</h4>
+            <form id="editItemForm" onsubmit="updateItem(event)">
+                <input type="hidden" id="editItemId">
+                <div class="mb-3">
+                    <label class="form-label">Nama Item</label>
+                    <input type="text" id="editItemName" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Harga (Rp)</label>
+                    <input type="number" id="editItemPrice" class="form-control" min="0" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Prioritas</label>
+                    <select id="editItemPriority" class="form-select" required>
+                        <option value="high">⭐ Tinggi (Wajib)</option>
+                        <option value="medium">✨ Sedang (Perlu)</option>
+                        <option value="low">💫 Rendah (Keinginan)</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Catatan</label>
+                    <textarea id="editItemNote" class="form-control" rows="3"></textarea>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn-add" style="flex: 1;">💾 Simpan</button>
+                    <button type="button" class="btn-add" style="flex: 1; background: #ccc;" onclick="closeEditModal()">❌ Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Data Storage
+        let shoppingItems = JSON.parse(localStorage.getItem('shoppingItems')) || [];
+        let budget = parseFloat(localStorage.getItem('budget')) || 0;
+        let history = JSON.parse(localStorage.getItem('history')) || [];
+        let darkMode = localStorage.getItem('darkMode') === 'true';
+        
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+        
+        function initializeApp() {
+            // Apply dark mode if enabled
+            if (darkMode) {
+                document.body.classList.add('dark-mode');
+                document.getElementById('darkModeToggle').checked = true;
+            }
+            
+            // Load budget
+            document.getElementById('budgetInput').value = budget || '';
+            updateBudgetDisplay();
+            
+            // Load items
+            renderShoppingList();
+            renderHistory();
+            
+            // Register Service Worker
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register(getServiceWorkerBlob())
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed'));
+            }
+            
+            // Set manifest
+            const manifestBlob = new Blob([getManifest()], {type: 'application/json'});
+            const manifestURL = URL.createObjectURL(manifestBlob);
+            document.getElementById('manifest-placeholder').href = manifestURL;
+        }
+        
+        // Navigation
+        function switchPage(page) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById('page-' + page).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+        
+        // Budget Functions
+        function setBudget() {
+            budget = parseFloat(document.getElementById('budgetInput').value) || 0;
+            localStorage.setItem('budget', budget);
+            updateBudgetDisplay();
+        }
+        
+        function updateBudgetDisplay() {
+            const total = calculateTotal();
+            document.getElementById('totalSpent').textContent = formatCurrency(total);
+            document.getElementById('budgetAmount').textContent = formatCurrency(budget);
+            
+            const budgetInfo = document.getElementById('budgetInfo');
+            const budgetAlert = document.getElementById('budgetAlert');
+            
+            if (budget > 0 && total > budget) {
+                budgetInfo.classList.add('over-budget');
+                budgetAlert.classList.add('show');
+            } else {
+                budgetInfo.classList.remove('over-budget');
+                budgetAlert.classList.remove('show');
+            }
+        }
+        
+        function calculateTotal() {
+            return shoppingItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
+        }
+        
+        function formatCurrency(amount) {
+            return 'Rp ' + amount.toLocaleString('id-ID');
+        }
+        
+        // Shopping List Functions
+        function addItem(event) {
+            event.preventDefault();
+            
+            const item = {
+                id: Date.now(),
+                name: document.getElementById('itemName').value,
+                price: parseFloat(document.getElementById('itemPrice').value),
+                priority: document.getElementById('itemPriority').value,
+                note: document.getElementById('itemNote').value,
+                createdAt: new Date().toISOString()
+            };
+            
+            shoppingItems.push(item);
+            saveItems();
+            renderShoppingList();
+            updateBudgetDisplay();
+            
+            // Reset form and switch to home
+            document.getElementById('addItemForm').reset();
+            switchPage('home');
+            document.querySelectorAll('.nav-item')[0].click();
+        }
+        
+        function renderShoppingList() {
+            const container = document.getElementById('shoppingList');
+            
+            if (shoppingItems.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🛒</div>
+                        <p>Belum ada item belanja.<br>Tambahkan sekarang!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Sort by priority
+            const priorityOrder = { high: 1, medium: 2, low: 3 };
+            const sortedItems = [...shoppingItems].sort((a, b) => 
+                priorityOrder[a.priority] - priorityOrder[b.priority]
+            );
+            
+            container.innerHTML = sortedItems.map(item => `
+                <div class="shopping-item">
+                    <div class="item-info">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-price">${formatCurrency(item.price)}</div>
+                        ${item.note ? `<small style="color: #999;">📝 ${item.note}</small>` : ''}
+                        <div style="margin-top: 5px;">
+                            <span class="priority-badge priority-${item.priority}">
+                                ${getPriorityLabel(item.priority)}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="btn-icon btn-edit" onclick="editItem(${item.id})">✏️</button>
+                        <button class="btn-icon btn-delete" onclick="deleteItem(${item.id})">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function getPriorityLabel(priority) {
+            const labels = {
+                high: '⭐ Tinggi',
+                medium: '✨ Sedang',
+                low: '💫 Rendah'
+            };
+            return labels[priority] || priority;
+        }
+        
+        function editItem(id) {
+            const item = shoppingItems.find(i => i.id === id);
+            if (!item) return;
+            
+            document.getElementById('editItemId').value = item.id;
+            document.getElementById('editItemName').value = item.name;
+            document.getElementById('editItemPrice').value = item.price;
+            document.getElementById('editItemPriority').value = item.priority;
+            document.getElementById('editItemNote').value = item.note || '';
+            
+            document.getElementById('editModal').classList.add('show');
+        }
+        
+        function updateItem(event) {
+            event.preventDefault();
+            
+            const id = parseInt(document.getElementById('editItemId').value);
+            const index = shoppingItems.findIndex(i => i.id === id);
+            
+            if (index !== -1) {
+                shoppingItems[index] = {
+                    ...shoppingItems[index],
+                    name: document.getElementById('editItemName').value,
+                    price: parseFloat(document.getElementById('editItemPrice').value),
+                    priority: document.getElementById('editItemPriority').value,
+                    note: document.getElementById('editItemNote').value
+                };
+                
+                saveItems();
+                renderShoppingList();
+                updateBudgetDisplay();
+                closeEditModal();
+            }
+        }
+        
+        function closeEditModal() {
+            document.getElementById('editModal').classList.remove('show');
+        }
+        
+        function deleteItem(id) {
+            if (confirm('Yakin ingin menghapus item ini?')) {
+                shoppingItems = shoppingItems.filter(i => i.id !== id);
+                saveItems();
+                renderShoppingList();
+                updateBudgetDisplay();
+            }
+        }
+        
+        function saveItems() {
+            localStorage.setItem('shoppingItems', JSON.stringify(shoppingItems));
+        }
+        
+        // History Functions
+        function saveToHistory() {
+            if (shoppingItems.length === 0) {
+                alert('Tidak ada item untuk disimpan ke riwayat');
+                return;
+            }
+            
+            if (confirm('Simpan daftar belanja saat ini ke riwayat?')) {
+                const historyEntry = {
+                    id: Date.now(),
+                    date: new Date().toISOString(),
+                    items: [...shoppingItems],
+                    total: calculateTotal(),
+                    budget: budget
+                };
+                
+                history.unshift(historyEntry);
+                localStorage.setItem('history', JSON.stringify(history));
+                
+                // Clear current shopping list
+                shoppingItems = [];
+                saveItems();
+                renderShoppingList();
+                updateBudgetDisplay();
+                renderHistory();
+                
+                alert('✅ Berhasil disimpan ke riwayat!');
+            }
+        }
+        
+        function renderHistory() {
+            const container = document.getElementById('historyList');
+            
+            if (history.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📋</div>
+                        <p>Belum ada riwayat belanja</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = history.map(entry => `
+                <div class="history-item">
+                    <div class="history-date">
+                        📅 ${new Date(entry.date).toLocaleString('id-ID', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        })}
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <strong>Total: ${formatCurrency(entry.total)}</strong>
+                        ${entry.budget > 0 ? `<span style="color: #999;"> / Budget: ${formatCurrency(entry.budget)}</span>` : ''}
+                    </div>
+                    <div style="font-size: 0.9rem; color: #666;">
+                        ${entry.items.length} item belanja
+                    </div>
+                    <details style="margin-top: 10px;">
+                        <summary style="cursor: pointer; color: var(--pastel-blue);">Lihat Detail</summary>
+                        <div style="margin-top: 10px;">
+                            ${entry.items.map(item => `
+                                <div style="padding: 5px 0; border-bottom: 1px solid #eee;">
+                                    <strong>${item.name}</strong> - ${formatCurrency(item.price)}
+                                    <span class="priority-badge priority-${item.priority}" style="margin-left: 10px;">
+                                        ${getPriorityLabel(item.priority)}
+                                    </span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </details>
+                </div>
+            `).join('');
+        }
+        
+        // Settings Functions
+        function toggleDarkMode() {
+            darkMode = !darkMode;
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', darkMode);
+        }
+        
+        function clearAllData() {
+            if (confirm('⚠️ PERINGATAN!\n\nIni akan menghapus SEMUA data termasuk:\n- Daftar belanja\n- Riwayat\n- Anggaran\n\nYakin ingin melanjutkan?')) {
+                localStorage.clear();
+                shoppingItems = [];
+                history = [];
+                budget = 0;
+                
+                document.getElementById('budgetInput').value = '';
+                updateBudgetDisplay();
+                renderShoppingList();
+                renderHistory();
+                
+                alert('✅ Semua data berhasil dihapus!');
+            }
+        }
+        
+        // Service Worker
+        function getServiceWorkerBlob() {
+            const swCode = `
+                const CACHE_NAME = 'prioritize-v1';
+                const urlsToCache = [
+                    '/',
+                    '/prioritize.html'
+                ];
+                
+                self.addEventListener('install', event => {
+                    event.waitUntil(
+                        caches.open(CACHE_NAME)
+                            .then(cache => cache.addAll(urlsToCache))
+                    );
+                });
+                
+                self.addEventListener('fetch', event => {
+                    event.respondWith(
+                        caches.match(event.request)
+                            .then(response => response || fetch(event.request))
+                    );
+                });
+            `;
+            
+            const blob = new Blob([swCode], { type: 'application/javascript' });
+            return URL.createObjectURL(blob);
+        }
+        
+        // Manifest
+        function getManifest() {
+            return JSON.stringify({
+                "name": "Prioritize - Daftar Belanja Pintar",
+                "short_name": "Prioritize",
+                "description": "Aplikasi daftar belanja dengan prioritas untuk mahasiswa",
+                "start_url": "/prioritize.html",
+                "display": "standalone",
+                "background_color": "#B4D4FF",
+                "theme_color": "#B4D4FF",
+                "orientation": "portrait",
+                "icons": [
+                    {
+                        "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23B4D4FF' width='200' height='200' rx='20'/%3E%3Ctext x='100' y='130' font-size='100' text-anchor='middle' fill='white'%3E🎯%3C/text%3E%3C/svg%3E",
+                        "sizes": "192x192",
+                        "type": "image/svg+xml"
+                    },
+                    {
+                        "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect fill='%23B4D4FF' width='512' height='512' rx='50'/%3E%3Ctext x='256' y='350' font-size='280' text-anchor='middle' fill='white'%3E🎯%3C/text%3E%3C/svg%3E",
+                        "sizes": "512x512",
+                        "type": "image/svg+xml"
+                    }
+                ]
+            });
+        }
+    </script>
+</body>
+</html>
