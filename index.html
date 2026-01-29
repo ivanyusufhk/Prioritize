@@ -1,4 +1,3 @@
-Prioritize
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -29,6 +28,7 @@ Prioritize
             --priority-high: #FFB3BA;
             --priority-medium: #FFFFBA;
             --priority-low: #BAFFC9;
+            --premium-gold: #FFD700;
         }
         
         * {
@@ -50,6 +50,399 @@ Prioritize
         .container {
             max-width: 600px;
             padding-top: 20px;
+        }
+        
+        /* Login Page Styles */
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-card {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .dark-mode .login-card {
+            background: var(--dark-card);
+        }
+        
+        .login-logo {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .login-title {
+            font-weight: 700;
+            color: var(--pastel-blue);
+            margin-bottom: 10px;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid var(--pastel-blue);
+            background: white;
+            color: var(--pastel-blue);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .tab-btn {
+            background: var(--dark-bg);
+            color: var(--pastel-blue);
+        }
+        
+        .tab-btn.active {
+            background: var(--pastel-blue);
+            color: white;
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        /* Premium Badge */
+        .premium-badge {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-left: 10px;
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .dark-mode .user-info {
+            background: var(--dark-card);
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--pastel-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        /* Premium Features Section */
+        .premium-section {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            color: white;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .premium-section h5 {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .premium-features {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        
+        .premium-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .premium-features li:before {
+            content: "✓";
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Chat Interface */
+        .chat-container {
+            background: white;
+            border-radius: 20px;
+            padding: 0;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .dark-mode .chat-container {
+            background: var(--dark-card);
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
+            color: white;
+            padding: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .consultant-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .consultant-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .online-status {
+            width: 10px;
+            height: 10px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: var(--soft-white);
+        }
+        
+        .dark-mode .chat-messages {
+            background: var(--dark-bg);
+        }
+        
+        .chat-message {
+            margin-bottom: 15px;
+            display: flex;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .chat-message.user {
+            justify-content: flex-end;
+        }
+        
+        .message-bubble {
+            max-width: 70%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            word-wrap: break-word;
+        }
+        
+        .message-bubble.user {
+            background: var(--pastel-blue);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .message-bubble.consultant {
+            background: white;
+            color: #333;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .dark-mode .message-bubble.consultant {
+            background: var(--dark-card);
+            color: var(--dark-text);
+        }
+        
+        .message-time {
+            font-size: 0.7rem;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        .chat-input-container {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .dark-mode .chat-input-container {
+            background: var(--dark-card);
+            border-top-color: #444;
+        }
+        
+        .chat-input {
+            flex: 1;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            padding: 10px 20px;
+            outline: none;
+        }
+        
+        .dark-mode .chat-input {
+            background: var(--dark-bg);
+            border-color: #444;
+            color: var(--dark-text);
+        }
+        
+        .chat-input:focus {
+            border-color: var(--pastel-blue);
+        }
+        
+        .send-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            background: var(--pastel-blue);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .typing-indicator {
+            display: none;
+            padding: 12px 18px;
+            background: white;
+            border-radius: 18px;
+            width: fit-content;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .dark-mode .typing-indicator {
+            background: var(--dark-card);
+        }
+        
+        .typing-indicator.show {
+            display: block;
+        }
+        
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .locked-feature {
+            position: relative;
+            filter: blur(3px);
+            pointer-events: none;
+        }
+        
+        .unlock-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        .dark-mode .unlock-overlay {
+            background: rgba(22, 33, 62, 0.95);
         }
         
         .app-header {
@@ -172,6 +565,23 @@ Prioritize
         .btn-add:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-premium {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: 600;
+            width: 100%;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
         }
         
         .priority-badge {
@@ -485,172 +895,283 @@ Prioritize
                 padding-left: 15px;
                 padding-right: 15px;
             }
+            
+            .login-card {
+                padding: 30px 20px;
+            }
+        }
+        
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Page: Home -->
-        <div id="page-home" class="page active">
-            <div class="app-header">
-                <h1>🎯 Prioritize</h1>
-                <p>Belanja Pintar, Hemat Cerdas!</p>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="login-card">
+            <div class="login-logo">🎯</div>
+            <h2 class="login-title">Prioritize</h2>
+            <p style="color: #666; margin-bottom: 30px;">Belanja Pintar, Hemat Cerdas!</p>
+            
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchAuthTab('login')">Masuk</button>
+                <button class="tab-btn" onclick="switchAuthTab('register')">Daftar</button>
             </div>
             
-            <!-- Budget Alert -->
-            <div id="budgetAlert" class="alert-custom">
-                <strong>⚠️ Peringatan!</strong> Total belanja Anda melebihi anggaran!
-            </div>
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form active" onsubmit="handleLogin(event)">
+                <div class="mb-3">
+                    <input type="email" id="loginEmail" class="form-control" placeholder="Email" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-add">🔓 Masuk</button>
+                <p style="margin-top: 15px; font-size: 0.85rem; color: #999;">
+                    Demo: email@test.com / password123
+                </p>
+            </form>
             
-            <!-- Budget Summary -->
-            <div class="budget-card">
-                <h5 style="margin-bottom: 15px;">💰 Anggaran Belanja</h5>
-                <div class="budget-input-group">
-                    <input type="number" id="budgetInput" class="form-control" placeholder="Masukkan anggaran (Rp)" min="0">
-                    <button class="btn btn-add" onclick="setBudget()" style="width: auto;">Set</button>
+            <!-- Register Form -->
+            <form id="registerForm" class="auth-form" onsubmit="handleRegister(event)">
+                <div class="mb-3">
+                    <input type="text" id="registerName" class="form-control" placeholder="Nama Lengkap" required>
                 </div>
-                <div id="budgetInfo" class="budget-info">
-                    <div>
-                        <small>Total Belanja</small>
-                        <h4 id="totalSpent" style="margin: 0; color: var(--pastel-blue);">Rp 0</h4>
-                    </div>
-                    <div style="text-align: right;">
-                        <small>Anggaran</small>
-                        <h4 id="budgetAmount" style="margin: 0;">Rp 0</h4>
-                    </div>
+                <div class="mb-3">
+                    <input type="email" id="registerEmail" class="form-control" placeholder="Email" required>
                 </div>
-            </div>
-            
-            <!-- Shopping List -->
-            <div class="budget-card">
-                <h5 style="margin-bottom: 15px;">📝 Daftar Belanja</h5>
-                <div id="shoppingList" class="shopping-list">
-                    <div class="empty-state">
-                        <div class="empty-state-icon">🛒</div>
-                        <p>Belum ada item belanja.<br>Tambahkan sekarang!</p>
-                    </div>
+                <div class="mb-3">
+                    <input type="password" id="registerPassword" class="form-control" placeholder="Password (min 6 karakter)" minlength="6" required>
                 </div>
-            </div>
-        </div>
-        
-        <!-- Page: Add Item -->
-        <div id="page-add" class="page">
-            <div class="app-header">
-                <h1>➕ Tambah Belanja</h1>
-                <p>Atur prioritas belanjamu</p>
-            </div>
-            
-            <div class="add-item-card">
-                <form id="addItemForm" onsubmit="addItem(event)">
-                    <div class="mb-3">
-                        <label class="form-label">📦 Nama Item</label>
-                        <input type="text" id="itemName" class="form-control" placeholder="Contoh: Mie Instan" required>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label">💵 Harga (Rp)</label>
-                        <input type="number" id="itemPrice" class="form-control" placeholder="Contoh: 15000" min="0" required>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label">🎯 Prioritas</label>
-                        <select id="itemPriority" class="form-select" required>
-                            <option value="">Pilih Prioritas</option>
-                            <option value="high">⭐ Tinggi (Wajib)</option>
-                            <option value="medium">✨ Sedang (Perlu)</option>
-                            <option value="low">💫 Rendah (Keinginan)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label">📝 Catatan (Opsional)</label>
-                        <textarea id="itemNote" class="form-control" rows="3" placeholder="Tambahkan catatan..."></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn-add">
-                        ✅ Tambahkan Item
-                    </button>
-                </form>
-            </div>
-        </div>
-        
-        <!-- Page: History -->
-        <div id="page-history" class="page">
-            <div class="app-header">
-                <h1>📊 Riwayat</h1>
-                <p>Catatan belanja sebelumnya</p>
-            </div>
-            
-            <div id="historyList">
-                <div class="empty-state">
-                    <div class="empty-state-icon">📋</div>
-                    <p>Belum ada riwayat belanja</p>
+                <div class="mb-3">
+                    <input type="password" id="registerConfirmPassword" class="form-control" placeholder="Konfirmasi Password" required>
                 </div>
-            </div>
-        </div>
-        
-        <!-- Page: Settings -->
-        <div id="page-settings" class="page">
-            <div class="app-header">
-                <h1>⚙️ Pengaturan</h1>
-                <p>Sesuaikan aplikasi Anda</p>
-            </div>
-            
-            <div class="settings-card">
-                <div class="setting-item">
-                    <div>
-                        <strong>🌙 Mode Gelap</strong>
-                        <p style="margin: 0; font-size: 0.8rem; color: #999;">Aktifkan tema gelap</p>
-                    </div>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                
-                <div class="setting-item">
-                    <div>
-                        <strong>🗑️ Hapus Semua Data</strong>
-                        <p style="margin: 0; font-size: 0.8rem; color: #999;">Reset aplikasi</p>
-                    </div>
-                    <button class="btn btn-danger btn-sm" onclick="clearAllData()">Hapus</button>
-                </div>
-                
-                <div class="setting-item">
-                    <div>
-                        <strong>💾 Simpan ke Riwayat</strong>
-                        <p style="margin: 0; font-size: 0.8rem; color: #999;">Pindahkan belanja saat ini</p>
-                    </div>
-                    <button class="btn btn-success btn-sm" onclick="saveToHistory()">Simpan</button>
-                </div>
-            </div>
-            
-            <div class="settings-card">
-                <h5 style="margin-bottom: 15px;">ℹ️ Tentang Aplikasi</h5>
-                <p><strong>Prioritize</strong> v1.0</p>
-                <p style="font-size: 0.9rem; color: #666;">Aplikasi daftar belanja dengan sistem prioritas untuk membantu mahasiswa mengatur keuangan.</p>
-                <p style="font-size: 0.8rem; color: #999; margin-top: 15px;">💡 Tips: Gunakan prioritas "Tinggi" untuk kebutuhan wajib, "Sedang" untuk kebutuhan penting, dan "Rendah" untuk keinginan.</p>
-            </div>
+                <button type="submit" class="btn-add">✨ Daftar Sekarang</button>
+            </form>
         </div>
     </div>
     
-    <!-- Bottom Navigation -->
-    <div class="bottom-nav">
-        <div class="nav-item active" onclick="switchPage('home')">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-label">Home</span>
+    <!-- Main App (Hidden until logged in) -->
+    <div id="mainApp" class="hidden">
+        <div class="container">
+            <!-- Page: Home -->
+            <div id="page-home" class="page active">
+                <!-- User Info -->
+                <div class="user-info">
+                    <div style="display: flex; align-items: center; flex: 1;">
+                        <div class="user-avatar" id="userAvatar">👤</div>
+                        <div>
+                            <strong id="userName">User</strong>
+                            <span id="premiumBadge"></span>
+                            <div style="font-size: 0.8rem; color: #999;" id="userEmail">email@test.com</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-sm btn-outline-danger" onclick="handleLogout()">Keluar</button>
+                </div>
+                
+                <div class="app-header">
+                    <h1>🎯 Prioritize</h1>
+                    <p>Belanja Pintar, Hemat Cerdas!</p>
+                </div>
+                
+                <!-- Premium Section (if not premium) -->
+                <div id="premiumPromo" class="premium-section">
+                    <h5>✨ Upgrade ke Premium!</h5>
+                    <ul class="premium-features">
+                        <li>Chat langsung dengan konsultan keuangan profesional</li>
+                        <li>Analisis belanja mendalam & rekomendasi personal</li>
+                        <li>Tips hemat khusus mahasiswa</li>
+                        <li>Prioritas respons 24/7</li>
+                    </ul>
+                    <button class="btn-premium" onclick="upgradeToPremium()">
+                        🚀 Upgrade Sekarang - Rp 49.000/bulan
+                    </button>
+                </div>
+                
+                <!-- Budget Alert -->
+                <div id="budgetAlert" class="alert-custom">
+                    <strong>⚠️ Peringatan!</strong> Total belanja Anda melebihi anggaran!
+                </div>
+                
+                <!-- Budget Summary -->
+                <div class="budget-card">
+                    <h5 style="margin-bottom: 15px;">💰 Anggaran Belanja</h5>
+                    <div class="budget-input-group">
+                        <input type="number" id="budgetInput" class="form-control" placeholder="Masukkan anggaran (Rp)" min="0">
+                        <button class="btn btn-add" onclick="setBudget()" style="width: auto;">Set</button>
+                    </div>
+                    <div id="budgetInfo" class="budget-info">
+                        <div>
+                            <small>Total Belanja</small>
+                            <h4 id="totalSpent" style="margin: 0; color: var(--pastel-blue);">Rp 0</h4>
+                        </div>
+                        <div style="text-align: right;">
+                            <small>Anggaran</small>
+                            <h4 id="budgetAmount" style="margin: 0;">Rp 0</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shopping List -->
+                <div class="budget-card">
+                    <h5 style="margin-bottom: 15px;">📝 Daftar Belanja</h5>
+                    <div id="shoppingList" class="shopping-list">
+                        <div class="empty-state">
+                            <div class="empty-state-icon">🛒</div>
+                            <p>Belum ada item belanja.<br>Tambahkan sekarang!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page: Add Item -->
+            <div id="page-add" class="page">
+                <div class="app-header">
+                    <h1>➕ Tambah Belanja</h1>
+                    <p>Atur prioritas belanjamu</p>
+                </div>
+                
+                <div class="add-item-card">
+                    <form id="addItemForm" onsubmit="addItem(event)">
+                        <div class="mb-3">
+                            <label class="form-label">📦 Nama Item</label>
+                            <input type="text" id="itemName" class="form-control" placeholder="Contoh: Mie Instan" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">💵 Harga (Rp)</label>
+                            <input type="number" id="itemPrice" class="form-control" placeholder="Contoh: 15000" min="0" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">🎯 Prioritas</label>
+                            <select id="itemPriority" class="form-select" required>
+                                <option value="">Pilih Prioritas</option>
+                                <option value="high">⭐ Tinggi (Wajib)</option>
+                                <option value="medium">✨ Sedang (Perlu)</option>
+                                <option value="low">💫 Rendah (Keinginan)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">📝 Catatan (Opsional)</label>
+                            <textarea id="itemNote" class="form-control" rows="3" placeholder="Tambahkan catatan..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-add">
+                            ✅ Tambahkan Item
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Page: Consultation (Premium Feature) -->
+            <div id="page-consultation" class="page">
+                <div class="app-header">
+                    <h1>💬 Konsultasi</h1>
+                    <p>Chat dengan Konsultan Keuangan</p>
+                </div>
+                
+                <div id="consultationContent">
+                    <!-- Will be populated based on premium status -->
+                </div>
+            </div>
+            
+            <!-- Page: History -->
+            <div id="page-history" class="page">
+                <div class="app-header">
+                    <h1>📊 Riwayat</h1>
+                    <p>Catatan belanja sebelumnya</p>
+                </div>
+                
+                <div id="historyList">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📋</div>
+                        <p>Belum ada riwayat belanja</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page: Settings -->
+            <div id="page-settings" class="page">
+                <div class="app-header">
+                    <h1>⚙️ Pengaturan</h1>
+                    <p>Sesuaikan aplikasi Anda</p>
+                </div>
+                
+                <!-- Account Settings -->
+                <div class="settings-card">
+                    <h5 style="margin-bottom: 15px;">👤 Akun</h5>
+                    <div class="setting-item">
+                        <div>
+                            <strong>Status Akun</strong>
+                            <p style="margin: 0; font-size: 0.8rem;" id="accountStatus">Free</p>
+                        </div>
+                        <button class="btn btn-sm btn-primary" onclick="switchPage('consultation')" id="manageSubscription">Kelola</button>
+                    </div>
+                </div>
+                
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <div>
+                            <strong>🌙 Mode Gelap</strong>
+                            <p style="margin: 0; font-size: 0.8rem; color: #999;">Aktifkan tema gelap</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <strong>🗑️ Hapus Semua Data</strong>
+                            <p style="margin: 0; font-size: 0.8rem; color: #999;">Reset aplikasi</p>
+                        </div>
+                        <button class="btn btn-danger btn-sm" onclick="clearAllData()">Hapus</button>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <strong>💾 Simpan ke Riwayat</strong>
+                            <p style="margin: 0; font-size: 0.8rem; color: #999;">Pindahkan belanja saat ini</p>
+                        </div>
+                        <button class="btn btn-success btn-sm" onclick="saveToHistory()">Simpan</button>
+                    </div>
+                </div>
+                
+                <div class="settings-card">
+                    <h5 style="margin-bottom: 15px;">ℹ️ Tentang Aplikasi</h5>
+                    <p><strong>Prioritize</strong> v2.0</p>
+                    <p style="font-size: 0.9rem; color: #666;">Aplikasi daftar belanja dengan sistem prioritas untuk membantu mahasiswa mengatur keuangan.</p>
+                    <p style="font-size: 0.8rem; color: #999; margin-top: 15px;">💡 Tips: Gunakan prioritas "Tinggi" untuk kebutuhan wajib, "Sedang" untuk kebutuhan penting, dan "Rendah" untuk keinginan.</p>
+                </div>
+            </div>
         </div>
-        <div class="nav-item" onclick="switchPage('add')">
-            <span class="nav-icon">➕</span>
-            <span class="nav-label">Tambah</span>
-        </div>
-        <div class="nav-item" onclick="switchPage('history')">
-            <span class="nav-icon">📊</span>
-            <span class="nav-label">Riwayat</span>
-        </div>
-        <div class="nav-item" onclick="switchPage('settings')">
-            <span class="nav-icon">⚙️</span>
-            <span class="nav-label">Pengaturan</span>
+        
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-item active" onclick="switchPage('home')">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Home</span>
+            </div>
+            <div class="nav-item" onclick="switchPage('add')">
+                <span class="nav-icon">➕</span>
+                <span class="nav-label">Tambah</span>
+            </div>
+            <div class="nav-item" onclick="switchPage('consultation')">
+                <span class="nav-icon">💬</span>
+                <span class="nav-label">Konsultasi</span>
+            </div>
+            <div class="nav-item" onclick="switchPage('history')">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Riwayat</span>
+            </div>
+            <div class="nav-item" onclick="switchPage('settings')">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Pengaturan</span>
+            </div>
         </div>
     </div>
     
@@ -688,27 +1209,230 @@ Prioritize
         </div>
     </div>
     
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <h4 style="margin-bottom: 10px; text-align: center;">💳 Pembayaran Premium</h4>
+            <p style="text-align: center; color: #666; margin-bottom: 25px;">Scan QR Code untuk melakukan pembayaran</p>
+            
+            <div style="background: linear-gradient(135deg, #FFD700, #FFA500); padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 20px;">
+                <div style="font-size: 2rem; font-weight: 700; color: white;">Rp 49.000</div>
+                <div style="color: white; opacity: 0.9;">Per Bulan</div>
+            </div>
+            
+            <div style="background: white; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <p style="margin-bottom: 15px; font-weight: 600; color: #333;">Scan QR Code di bawah ini:</p>
+                <img src="/mnt/user-data/uploads/WhatsApp_Image_2026-01-29_at_10_27_04.jpeg" alt="QR Code Payment" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                    📱 Gunakan aplikasi e-wallet atau mobile banking Anda
+                </p>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                <p style="margin: 0; font-size: 0.85rem; color: #666; text-align: center;">
+                    ✨ Setelah pembayaran berhasil, klik tombol di bawah untuk mengaktifkan akun Premium Anda
+                </p>
+            </div>
+            
+            <div style="display: flex; gap: 10px;">
+                <button class="btn-premium" style="flex: 1;" onclick="confirmPayment()">
+                    ✅ Saya Sudah Bayar
+                </button>
+                <button class="btn-add" style="flex: 1; background: #ccc;" onclick="closePaymentModal()">
+                    ❌ Batal
+                </button>
+            </div>
+            
+            <p style="margin-top: 15px; text-align: center; font-size: 0.8rem; color: #999;">
+                💡 Pembayaran akan diverifikasi otomatis
+            </p>
+        </div>
+    </div>
+    
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
         // Data Storage
-        let shoppingItems = JSON.parse(localStorage.getItem('shoppingItems')) || [];
-        let budget = parseFloat(localStorage.getItem('budget')) || 0;
-        let history = JSON.parse(localStorage.getItem('history')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let shoppingItems = [];
+        let budget = 0;
+        let history = [];
         let darkMode = localStorage.getItem('darkMode') === 'true';
+        
+        // Consultant responses for demo
+        const consultantResponses = {
+            greeting: "Halo! Saya konsultan keuangan Prioritize. Saya siap membantu Anda mengatur keuangan dengan lebih baik. Ada yang bisa saya bantu?",
+            budget: "Berdasarkan data belanja Anda, saya sarankan untuk mengalokasikan budget dengan proporsi 50% untuk kebutuhan wajib, 30% untuk keinginan, dan 20% untuk tabungan darurat.",
+            saving: "Tips hemat untuk mahasiswa: 1) Beli kebutuhan pokok dalam jumlah besar saat diskon, 2) Masak sendiri daripada beli makanan jadi, 3) Gunakan transportasi umum, 4) Manfaatkan promo cashback.",
+            priority: "Untuk menentukan prioritas belanja: Tinggi (kebutuhan pokok seperti makanan & transportasi), Sedang (kebutuhan penting seperti alat tulis), Rendah (keinginan seperti hiburan). Selalu beli kebutuhan Tinggi dulu!",
+            default: "Pertanyaan yang bagus! Untuk konsultasi lebih mendalam, saya bisa memberikan analisis personal berdasarkan pola belanja Anda. Silakan ceritakan lebih detail tentang situasi keuangan Anda."
+        };
         
         // Initialize App
         document.addEventListener('DOMContentLoaded', function() {
-            initializeApp();
+            checkAuth();
         });
         
+        function checkAuth() {
+            if (currentUser) {
+                showMainApp();
+            } else {
+                showLoginPage();
+            }
+        }
+        
+        function showLoginPage() {
+            document.getElementById('loginPage').classList.remove('hidden');
+            document.getElementById('mainApp').classList.add('hidden');
+        }
+        
+        function showMainApp() {
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+            initializeApp();
+        }
+        
+        // Auth Functions
+        function switchAuthTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+            
+            if (tab === 'login') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('loginForm').classList.add('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('registerForm').classList.add('active');
+            }
+        }
+        
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Demo account
+            if (email === 'email@test.com' && password === 'password123') {
+                currentUser = {
+                    id: 'demo',
+                    name: 'Demo User',
+                    email: email,
+                    isPremium: false,
+                    createdAt: new Date().toISOString()
+                };
+            } else {
+                const user = users.find(u => u.email === email && u.password === password);
+                if (user) {
+                    currentUser = { ...user };
+                    delete currentUser.password; // Remove password from memory
+                } else {
+                    alert('Email atau password salah!');
+                    return;
+                }
+            }
+            
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            showMainApp();
+        }
+        
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Password tidak cocok!');
+                return;
+            }
+            
+            if (users.find(u => u.email === email)) {
+                alert('Email sudah terdaftar!');
+                return;
+            }
+            
+            const newUser = {
+                id: Date.now().toString(),
+                name: name,
+                email: email,
+                password: password,
+                isPremium: false,
+                createdAt: new Date().toISOString()
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            alert('✅ Registrasi berhasil! Silakan login.');
+            switchAuthTab('login');
+            document.getElementById('loginEmail').value = email;
+        }
+        
+        function handleLogout() {
+            if (confirm('Yakin ingin keluar?')) {
+                currentUser = null;
+                localStorage.removeItem('currentUser');
+                showLoginPage();
+            }
+        }
+        
+        function upgradeToPremium() {
+            document.getElementById('paymentModal').classList.add('show');
+        }
+        
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('show');
+        }
+        
+        function confirmPayment() {
+            // Simulate payment verification
+            const confirmBtn = event.target;
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = '⏳ Memverifikasi...';
+            
+            setTimeout(() => {
+                currentUser.isPremium = true;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                // Update user in users array
+                const userIndex = users.findIndex(u => u.id === currentUser.id);
+                if (userIndex !== -1) {
+                    users[userIndex].isPremium = true;
+                    localStorage.setItem('users', JSON.stringify(users));
+                }
+                
+                closePaymentModal();
+                
+                // Show success message
+                alert('🎉 Pembayaran berhasil diverifikasi!\n\nSelamat! Anda sekarang adalah member Premium!\n\n✨ Nikmati akses ke:\n• Chat dengan konsultan keuangan\n• Analisis belanja mendalam\n• Tips hemat personal\n• Support 24/7');
+                
+                initializeApp();
+                
+                // Auto switch to consultation page
+                setTimeout(() => {
+                    switchPage('consultation');
+                    document.querySelectorAll('.nav-item')[2].click();
+                }, 500);
+            }, 2000);
+        }
+        
         function initializeApp() {
+            // Load user data
+            loadUserData();
+            
             // Apply dark mode if enabled
             if (darkMode) {
                 document.body.classList.add('dark-mode');
                 document.getElementById('darkModeToggle').checked = true;
             }
+            
+            // Update UI based on user
+            updateUserUI();
             
             // Load budget
             document.getElementById('budgetInput').value = budget || '';
@@ -718,17 +1442,227 @@ Prioritize
             renderShoppingList();
             renderHistory();
             
-            // Register Service Worker
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register(getServiceWorkerBlob())
-                    .then(reg => console.log('Service Worker registered'))
-                    .catch(err => console.log('Service Worker registration failed'));
-            }
+            // Initialize consultation page
+            initializeConsultation();
+        }
+        
+        function loadUserData() {
+            const userKey = `userData_${currentUser.id}`;
+            const userData = JSON.parse(localStorage.getItem(userKey)) || {};
             
-            // Set manifest
-            const manifestBlob = new Blob([getManifest()], {type: 'application/json'});
-            const manifestURL = URL.createObjectURL(manifestBlob);
-            document.getElementById('manifest-placeholder').href = manifestURL;
+            shoppingItems = userData.shoppingItems || [];
+            budget = userData.budget || 0;
+            history = userData.history || [];
+        }
+        
+        function saveUserData() {
+            const userKey = `userData_${currentUser.id}`;
+            const userData = {
+                shoppingItems,
+                budget,
+                history
+            };
+            localStorage.setItem(userKey, JSON.stringify(userData));
+        }
+        
+        function updateUserUI() {
+            // Update user info
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('userEmail').textContent = currentUser.email;
+            document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+            
+            // Update premium badge
+            if (currentUser.isPremium) {
+                document.getElementById('premiumBadge').innerHTML = '<span class="premium-badge">⭐ PREMIUM</span>';
+                document.getElementById('premiumPromo').style.display = 'none';
+                document.getElementById('accountStatus').textContent = '⭐ Premium';
+                document.getElementById('manageSubscription').textContent = 'Aktif';
+            } else {
+                document.getElementById('premiumBadge').innerHTML = '';
+                document.getElementById('premiumPromo').style.display = 'block';
+                document.getElementById('accountStatus').textContent = 'Free';
+                document.getElementById('manageSubscription').textContent = 'Upgrade';
+            }
+        }
+        
+        function initializeConsultation() {
+            const container = document.getElementById('consultationContent');
+            
+            if (currentUser.isPremium) {
+                container.innerHTML = `
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <div class="consultant-info">
+                                <div class="consultant-avatar">👨‍💼</div>
+                                <div>
+                                    <strong>Konsultan Keuangan</strong>
+                                    <div style="font-size: 0.8rem;">
+                                        <span class="online-status"></span> Online
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-light" onclick="clearChat()">🔄</button>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="chat-message">
+                                <div class="message-bubble consultant">
+                                    ${consultantResponses.greeting}
+                                    <div class="message-time">${new Date().toLocaleTimeString('id-ID', {hour: '2-digit', minute: '2-digit'})}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="typing-indicator" id="typingIndicator">
+                            <div class="typing-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="chat-input-container">
+                            <input type="text" class="chat-input" id="chatInput" placeholder="Ketik pertanyaan Anda..." onkeypress="handleChatKeypress(event)">
+                            <button class="send-btn" onclick="sendMessage()">📤</button>
+                        </div>
+                    </div>
+                    
+                    <div class="budget-card" style="margin-top: 20px;">
+                        <h5 style="margin-bottom: 15px;">💡 Topik Konsultasi Populer</h5>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                            <button class="btn btn-sm btn-outline-primary" onclick="quickQuestion('budget')">💰 Tips Mengatur Budget</button>
+                            <button class="btn btn-sm btn-outline-primary" onclick="quickQuestion('saving')">🏦 Cara Menabung</button>
+                            <button class="btn btn-sm btn-outline-primary" onclick="quickQuestion('priority')">🎯 Menentukan Prioritas</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div style="position: relative;">
+                        <div class="chat-container locked-feature">
+                            <div class="chat-header">
+                                <div class="consultant-info">
+                                    <div class="consultant-avatar">👨‍💼</div>
+                                    <div>
+                                        <strong>Konsultan Keuangan</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-messages">
+                                <div class="chat-message">
+                                    <div class="message-bubble consultant">
+                                        Halo! Ini adalah contoh chat dengan konsultan...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="unlock-overlay">
+                            <div style="font-size: 3rem; margin-bottom: 15px;">🔒</div>
+                            <h4 style="margin-bottom: 15px;">Fitur Premium</h4>
+                            <p style="color: #666; margin-bottom: 20px;">
+                                Chat dengan konsultan keuangan profesional hanya tersedia untuk member Premium
+                            </p>
+                            <button class="btn-premium" onclick="upgradeToPremium()">
+                                ⭐ Upgrade ke Premium
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="premium-section" style="margin-top: 20px;">
+                        <h5>✨ Manfaat Konsultasi Premium</h5>
+                        <ul class="premium-features">
+                            <li>Konsultasi 1-on-1 dengan ahli keuangan bersertifikat</li>
+                            <li>Analisis pola belanja & rekomendasi personal</li>
+                            <li>Tips hemat spesifik untuk mahasiswa</li>
+                            <li>Rencana keuangan jangka panjang</li>
+                            <li>Respons cepat dalam 5 menit</li>
+                        </ul>
+                    </div>
+                `;
+            }
+        }
+        
+        // Chat Functions
+        function handleChatKeypress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addChatMessage(message, 'user');
+            input.value = '';
+            
+            // Show typing indicator
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.classList.add('show');
+            
+            // Simulate consultant response
+            setTimeout(() => {
+                typingIndicator.classList.remove('show');
+                const response = getConsultantResponse(message);
+                addChatMessage(response, 'consultant');
+            }, 1500 + Math.random() * 1000);
+        }
+        
+        function addChatMessage(message, sender) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${sender}`;
+            
+            const time = new Date().toLocaleTimeString('id-ID', {hour: '2-digit', minute: '2-digit'});
+            
+            messageDiv.innerHTML = `
+                <div class="message-bubble ${sender}">
+                    ${message}
+                    <div class="message-time">${time}</div>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function getConsultantResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('budget') || lowerMessage.includes('anggaran')) {
+                return consultantResponses.budget;
+            } else if (lowerMessage.includes('hemat') || lowerMessage.includes('nabung') || lowerMessage.includes('saving')) {
+                return consultantResponses.saving;
+            } else if (lowerMessage.includes('prioritas') || lowerMessage.includes('priority')) {
+                return consultantResponses.priority;
+            } else if (lowerMessage.includes('halo') || lowerMessage.includes('hai') || lowerMessage.includes('hi')) {
+                return "Halo! Senang bisa membantu Anda. Silakan tanyakan apapun tentang keuangan, budgeting, atau tips hemat untuk mahasiswa.";
+            } else {
+                return consultantResponses.default;
+            }
+        }
+        
+        function quickQuestion(topic) {
+            const questions = {
+                budget: 'Bagaimana cara mengatur budget yang baik?',
+                saving: 'Tips menabung untuk mahasiswa?',
+                priority: 'Bagaimana menentukan prioritas belanja?'
+            };
+            
+            document.getElementById('chatInput').value = questions[topic];
+            sendMessage();
+        }
+        
+        function clearChat() {
+            if (confirm('Hapus riwayat chat?')) {
+                const messagesContainer = document.getElementById('chatMessages');
+                messagesContainer.innerHTML = `
+                    <div class="chat-message">
+                        <div class="message-bubble consultant">
+                            ${consultantResponses.greeting}
+                            <div class="message-time">${new Date().toLocaleTimeString('id-ID', {hour: '2-digit', minute: '2-digit'})}</div>
+                        </div>
+                    </div>
+                `;
+            }
         }
         
         // Navigation
@@ -740,12 +1674,17 @@ Prioritize
             // Show selected page
             document.getElementById('page-' + page).classList.add('active');
             event.currentTarget.classList.add('active');
+            
+            // Re-initialize consultation if switching to that page
+            if (page === 'consultation') {
+                initializeConsultation();
+            }
         }
         
         // Budget Functions
         function setBudget() {
             budget = parseFloat(document.getElementById('budgetInput').value) || 0;
-            localStorage.setItem('budget', budget);
+            saveUserData();
             updateBudgetDisplay();
         }
         
@@ -788,7 +1727,7 @@ Prioritize
             };
             
             shoppingItems.push(item);
-            saveItems();
+            saveUserData();
             renderShoppingList();
             updateBudgetDisplay();
             
@@ -874,7 +1813,7 @@ Prioritize
                     note: document.getElementById('editItemNote').value
                 };
                 
-                saveItems();
+                saveUserData();
                 renderShoppingList();
                 updateBudgetDisplay();
                 closeEditModal();
@@ -888,14 +1827,10 @@ Prioritize
         function deleteItem(id) {
             if (confirm('Yakin ingin menghapus item ini?')) {
                 shoppingItems = shoppingItems.filter(i => i.id !== id);
-                saveItems();
+                saveUserData();
                 renderShoppingList();
                 updateBudgetDisplay();
             }
-        }
-        
-        function saveItems() {
-            localStorage.setItem('shoppingItems', JSON.stringify(shoppingItems));
         }
         
         // History Functions
@@ -915,11 +1850,10 @@ Prioritize
                 };
                 
                 history.unshift(historyEntry);
-                localStorage.setItem('history', JSON.stringify(history));
                 
                 // Clear current shopping list
                 shoppingItems = [];
-                saveItems();
+                saveUserData();
                 renderShoppingList();
                 updateBudgetDisplay();
                 renderHistory();
@@ -985,10 +1919,11 @@ Prioritize
         
         function clearAllData() {
             if (confirm('⚠️ PERINGATAN!\n\nIni akan menghapus SEMUA data termasuk:\n- Daftar belanja\n- Riwayat\n- Anggaran\n\nYakin ingin melanjutkan?')) {
-                localStorage.clear();
                 shoppingItems = [];
                 history = [];
                 budget = 0;
+                
+                saveUserData();
                 
                 document.getElementById('budgetInput').value = '';
                 updateBudgetDisplay();
@@ -997,60 +1932,6 @@ Prioritize
                 
                 alert('✅ Semua data berhasil dihapus!');
             }
-        }
-        
-        // Service Worker
-        function getServiceWorkerBlob() {
-            const swCode = `
-                const CACHE_NAME = 'prioritize-v1';
-                const urlsToCache = [
-                    '/',
-                    '/prioritize.html'
-                ];
-                
-                self.addEventListener('install', event => {
-                    event.waitUntil(
-                        caches.open(CACHE_NAME)
-                            .then(cache => cache.addAll(urlsToCache))
-                    );
-                });
-                
-                self.addEventListener('fetch', event => {
-                    event.respondWith(
-                        caches.match(event.request)
-                            .then(response => response || fetch(event.request))
-                    );
-                });
-            `;
-            
-            const blob = new Blob([swCode], { type: 'application/javascript' });
-            return URL.createObjectURL(blob);
-        }
-        
-        // Manifest
-        function getManifest() {
-            return JSON.stringify({
-                "name": "Prioritize - Daftar Belanja Pintar",
-                "short_name": "Prioritize",
-                "description": "Aplikasi daftar belanja dengan prioritas untuk mahasiswa",
-                "start_url": "/prioritize.html",
-                "display": "standalone",
-                "background_color": "#B4D4FF",
-                "theme_color": "#B4D4FF",
-                "orientation": "portrait",
-                "icons": [
-                    {
-                        "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23B4D4FF' width='200' height='200' rx='20'/%3E%3Ctext x='100' y='130' font-size='100' text-anchor='middle' fill='white'%3E🎯%3C/text%3E%3C/svg%3E",
-                        "sizes": "192x192",
-                        "type": "image/svg+xml"
-                    },
-                    {
-                        "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect fill='%23B4D4FF' width='512' height='512' rx='50'/%3E%3Ctext x='256' y='350' font-size='280' text-anchor='middle' fill='white'%3E🎯%3C/text%3E%3C/svg%3E",
-                        "sizes": "512x512",
-                        "type": "image/svg+xml"
-                    }
-                ]
-            });
         }
     </script>
 </body>
